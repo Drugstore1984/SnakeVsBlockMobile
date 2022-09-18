@@ -43,7 +43,7 @@ public class Block : MonoBehaviour
     {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
-        //GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+        GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
         Destroy(gameObject, 2f);
     }
 }
