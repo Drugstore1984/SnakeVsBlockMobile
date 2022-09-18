@@ -4,6 +4,7 @@ using TMPro;
 public class Block : MonoBehaviour
 {
     [SerializeField] private int _damage;
+    [SerializeField] private ParticleSystem _particleSystem;
     [Header("Gradient color")]
     [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private Color _color1;
@@ -20,7 +21,8 @@ public class Block : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        SetParticleColor();
+        DestroyBlock();
     }
     private void SetTextBlock()
     {
@@ -29,5 +31,19 @@ public class Block : MonoBehaviour
     private void SetColor()
     {
         _meshRenderer.material.color = Color.Lerp(_color1, _color2, _damage * 0.1f);
+    }
+    private void SetParticleColor()
+    {
+        ParticleSystem.MainModule psMain = _particleSystem.GetComponent<ParticleSystem>().main;
+        Color newColor = _meshRenderer.material.color;
+        psMain.startColor = new Color(newColor.r, newColor.g, newColor.b, 1);
+        _particleSystem.Play();
+    }
+    private void DestroyBlock()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        //GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+        Destroy(gameObject, 2f);
     }
 }

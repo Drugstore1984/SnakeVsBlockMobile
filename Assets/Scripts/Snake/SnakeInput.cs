@@ -1,14 +1,11 @@
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class SnakeInput : MonoBehaviour
 {
     private Camera mainCamera;
     private CinemachineVirtualCamera cmCamera;
     private Vector3 direction;
-    [SerializeField] LayerMask _layermask;
-
+    [SerializeField] LayerMask _layerMask;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -20,7 +17,7 @@ public class SnakeInput : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue,_layerMask))
             {
                 return direction = (hitInfo.point - transform.position);
             }

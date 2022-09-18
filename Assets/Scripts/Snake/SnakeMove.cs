@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,6 +5,9 @@ public class SnakeMove : MonoBehaviour
 {
     [SerializeField] private float _sideSpeed;
     [SerializeField] private float _forwardSpeed;
+
+    private float oldSideSpeed;
+    private float oldForwardSpeed;
 
     private Rigidbody _rb;
     private SnakeInput snakeInput;
@@ -30,13 +32,12 @@ public class SnakeMove : MonoBehaviour
     }
     public void SnakeMoveAgain()
     {
-        _sideSpeed = PlayerPrefs.GetFloat("SideSpeed", 0);
-        _forwardSpeed = PlayerPrefs.GetFloat("ForwardSpeed",0);
+        _sideSpeed = oldSideSpeed;
+        _forwardSpeed = oldForwardSpeed;
     }
     private void SaveSpeed()
     {
-        PlayerPrefs.SetFloat("SideSpeed",_sideSpeed);
-        PlayerPrefs.SetFloat("ForwardSpeed", _forwardSpeed);
-        PlayerPrefs.Save();
+        oldSideSpeed = _sideSpeed;
+        oldForwardSpeed = _forwardSpeed;
     }
 }

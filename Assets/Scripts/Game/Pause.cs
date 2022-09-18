@@ -4,12 +4,9 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     private SnakeMove snakeMove;
-    private void Start()
-    {
-        snakeMove = FindObjectOfType<SnakeMove>();
-    }
     public void PauseGame()
     {
+        snakeMove = FindObjectOfType<SnakeMove>();
         snakeMove.SnakeStop();
     }
     public void ResumeGame()
