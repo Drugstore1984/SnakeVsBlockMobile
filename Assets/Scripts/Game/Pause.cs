@@ -9,9 +9,12 @@ public class Pause : MonoBehaviour
     }
     public void PauseGame()
     {
-        snakeMove = FindObjectOfType<SnakeMove>();
-        snakeMove.SnakeStop();
-        _pauseMenu.SetActive(true);
+        if (snakeMove.forwardSpeed >= 0f)
+        {
+            snakeMove = FindObjectOfType<SnakeMove>();
+            snakeMove.SnakeStop();
+            _pauseMenu.SetActive(true);
+        }
     }
     public void ResumeGame()
     {
