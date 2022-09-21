@@ -5,6 +5,7 @@ public class SnakeMove : MonoBehaviour
 {
     [SerializeField] private float _sideSpeed;
     [SerializeField] private float _forwardSpeed;
+    public float forwardSpeed => _forwardSpeed;
 
     private float oldSideSpeed;
     private float oldForwardSpeed;
