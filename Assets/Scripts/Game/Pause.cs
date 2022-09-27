@@ -2,6 +2,7 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     private SnakeMove snakeMove;
+    [SerializeField] private Game _game;
     [SerializeField] private GameObject _pauseMenu;
     private void OnApplicationPause()
     {
@@ -9,7 +10,7 @@ public class Pause : MonoBehaviour
     }
     public void PauseGame()
     {
-        if (snakeMove.forwardSpeed >= 0f)
+        if (_game.CurrentState == Game.State.Playing)
         {
             snakeMove = FindObjectOfType<SnakeMove>();
             snakeMove.SnakeStop();
