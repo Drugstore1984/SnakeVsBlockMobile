@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     private void SetTextHealth()
     {

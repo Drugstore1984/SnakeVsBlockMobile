@@ -7,6 +7,7 @@ public class SnakeTail : MonoBehaviour
     private List<Vector3> positions = new List<Vector3>();
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private float _snakeZOffset = 0.5f;
+    [SerializeField] private ParticleSystem _particleDead;
     [HideInInspector] public bool isDead { get; private set; } = false;
     private Game game;
     private void Start()
@@ -14,7 +15,7 @@ public class SnakeTail : MonoBehaviour
         positions.Add(transform.position);
         game = FindObjectOfType<Game>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         TailsFollow();
     }
@@ -25,7 +26,7 @@ public class SnakeTail : MonoBehaviour
     }
     public void RemoveTails(int reciveDamage)
     {
-        if (TailsCount() > reciveDamage)
+        if (TailsCount() >= reciveDamage)
         {
             for (int i = 0; i < reciveDamage; i++)
                 RemoveTail();
@@ -80,6 +81,6 @@ public class SnakeTail : MonoBehaviour
     }
     private void PlayPartcle()
     {
-        _tails[0].gameObject.GetComponent<TailDestroy>().PlayParticle();
+       gameObject.GetComponent<TailDestroy>().PlayParticle();
     }
 }

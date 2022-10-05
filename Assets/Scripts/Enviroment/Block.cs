@@ -44,6 +44,10 @@ public class Block : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
         GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
-        Destroy(gameObject, 2f);
+        Invoke("DisableGameObject", 2f);
+    }
+    private void DisableGameObject()
+    {
+        gameObject.SetActive(false);
     }
 }
