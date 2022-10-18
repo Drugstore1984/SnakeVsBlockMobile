@@ -68,7 +68,6 @@ public class SnakeTail : MonoBehaviour
 
             distance -= _snakeZOffset;
         }
-
         for (int i = 0; i < _tails.Count; i++)
         {
             _tails[i].position = Vector3.Lerp(positions[i + 1], positions[i], distance / _snakeZOffset);
